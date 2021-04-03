@@ -1,0 +1,179 @@
+
+{% extends "layout.html" %}
+{% block body %}
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+<div class="flex">
+    
+    
+    </div>
+
+
+<!-- profile starts from here -->
+<div class="flex-initial ...">
+<div class="container">
+
+    <div class="row mb-5 pt-5">
+        
+        <div class="col-lg-8">
+            <div class="left">
+                <style>
+                    .left {
+                      border: 2px solid #4CAF50;
+                      padding: 1px;
+                      right: 840px;
+                    }
+                    .left {
+                      float: left;
+                    }    
+                    </style>
+            
+            <div class="content-section">
+                <div class="media">
+                    <img class="rounded-circle account-img"src="{{image_file}}" alt="defaultimg">
+                    <div class="media-body">
+                    </div>
+                </div>
+            
+            <h1 class="mb-3">{{name + " " }}</h1>
+            <br>
+
+            <button id="follow-button" class='msg-icon' name="follow" type="button" >{{button}}
+            </button> 
+            <br>
+            
+            {% if room %}
+                
+            <iframe src={{room}} allow="microphone" width="750px" height="500px" overflow-y: auto></iframe>
+            {% endif %}  
+
+            <td>Followers : </td>
+                <td><span id='follower_count'>{{ follower  }}</span>
+                    <span class="text-primary mx-3">
+                        <a class="edit-name-button1" href="#" title="Edit name button" data-toggle="collapse" data-target="#edit-name">View</a>
+                    </span></td>
+
+            <td>Following : </td>
+            <td><span id='following_count'>{{ following  }}</span>
+                <span class="text-primary mx-3">
+                    <a class="edit-name-button1" href="#" title="Edit name button" data-toggle="collapse" data-target="#edit-name">View</a>
+                </span></td>
+
+            <div class="table-responsive">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>Name</td>
+                            <td>{{ name }}
+                                {% if current_user.verified %}
+                                {% endif %}
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Location</td>
+                            <td>{{ location }}
+
+                            </td>
+                        </tr>
+                        <tr>
+
+                        <tr>
+                            <td>Bio</td>
+                            <td>{{ bio }}
+  
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Twitter</td>
+                            <td>{{ 'https://twitter.com/amit__malik' }}</td>
+                            </tr>
+                            <br>
+                            <td>Unique ID</td>
+                            <td>{{ id}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+<!--  -->
+</div>
+
+<!--  -->
+
+
+<div class="flex-initial ...">
+            <div class="flex-initial ...">
+                <!-- Won't grow, but will shrink if needed -->
+              
+            <div class="bg-secondary text-white rounded p-3 mt-5">
+                <h2>Add Posts</h2>
+                <form id="add-note-form">
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input class="form-control" type="text" id="title" name="title" placeholder="Enter title">
+                    </div>
+                    <div class="form-group">
+                        <label for="body">Note text</label>
+                        <textarea class="form-control" id="body" name="body" placeholder="Enter note text" rows="4"></textarea>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary add-note-button" type="button">Save</button>
+                    </div>
+                </form>
+            </div>
+</div>
+        </div>
+
+    
+    </div>
+    
+    <div class="right">
+        <style>
+            div {
+              border: 1px solid #4CAF50;
+              padding: 1px;
+              left: 400px;
+              right: 400px;
+            }
+            .right {
+              float: right;
+            }    
+            </style>
+        
+        <section class="my-5">
+        
+          <div class="row">
+            <div class="col-md-6 col-lg-4">
+        
+              <div class="card card-personal">
+                {% for dict_item in data1 %}
+                    
+                {% for key, value in dict_item.items() %}
+                {% endfor %}
+        
+                <img class="card-img-top" src={{ static }}{{dict_item.image}} alt="Card image cap">
+        
+                <div class="card-body">
+                  <!-- Title-->
+                  <a>
+                    <h4 class="card-title title-one">{{dict_item.name}} </h4>
+                    <span class="right"><a href="/user/{{dict_item.name}}">View profile</a> </span>
+        
+                     
+                  </a>
+                  <p class="card-meta">{{dict_item.location}}</p>
+                  <a class="card-meta"><span><i class="fas fa-user"></i> 22 Followers <i class="fas fa-user"></i> 12 Following</span></a>
+                  <h6>Bio : {{dict_item.bio}}</h6>
+                  <hr>
+                  <hr>
+                
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        
+        </section>
+        </div>
+</div>
+</div>
+{% endblock %}
